@@ -1,6 +1,6 @@
 Name:           socket_wrapper
 Version:        1.1.9
-Release:        4
+Release:        5
 Summary:        A library passing all socket communications through unix sockets.
 License:        BSD
 URL:            http://cwrap.org/
@@ -46,7 +46,11 @@ cd build
 
 %check
 cd build
+%ifarch riscv64
+ctest -V --timeout 240
+%else
 ctest -V
+%endif
 LD_PRELOAD=src/libsocket_wrapper.so bash -c '>/dev/null'
 
 %files
@@ -61,5 +65,8 @@ LD_PRELOAD=src/libsocket_wrapper.so bash -c '>/dev/null'
 %{_mandir}/man1/socket_wrapper.1*
 
 %changelog
+* Thu Feb 24 2022 YukariChiba <i@0x7f.cc> - 1.1.9-5
+- Add more timeout for riscv64
+
 * Wed Nov 27 2019 zhouyihang <zhouyihang1@huawei.com> - 1.1.9-4
 - Package init
