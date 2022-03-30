@@ -1,6 +1,6 @@
 Name:           socket_wrapper
-Version:        1.1.9
-Release:        5
+Version:        1.3.3
+Release:        1
 Summary:        A library passing all socket communications through unix sockets.
 License:        BSD
 URL:            http://cwrap.org/
@@ -54,17 +54,23 @@ ctest -V
 LD_PRELOAD=src/libsocket_wrapper.so bash -c '>/dev/null'
 
 %files
-%doc AUTHORS COPYING
+%doc AUTHORS LICENSE
 %{_libdir}/libsocket_wrapper.so*
+%{_libdir}/libsocket_wrapper_noop.so*
 %dir %{_libdir}/cmake/socket_wrapper
 %{_libdir}/cmake/socket_wrapper/socket_wrapper-config*.cmake
+%{_libdir}/cmake/socket_wrapper/socket_wrapper_noop-config*.cmake
 %{_libdir}/pkgconfig/socket_wrapper.pc
+%{_libdir}/pkgconfig/socket_wrapper_noop.pc
+%{_includedir}/socket_wrapper.h
 
 %files help
-%doc ChangeLog README
 %{_mandir}/man1/socket_wrapper.1*
 
 %changelog
+* Wed Mar 30 2022 YukariChiba <i@0x7f.cc> - 1.3.3-1
+- Upgrade version to 1.3.3
+
 * Thu Feb 24 2022 YukariChiba <i@0x7f.cc> - 1.1.9-5
 - Add more timeout for riscv64
 
